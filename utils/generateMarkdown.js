@@ -129,20 +129,63 @@ function renderLicenseSection(data) {
 
 };
 
+function technologiesUsed(data) {
+  let htmlBadge = "";
+  let cssBadge = "";
+  let jsBadge = "";
+  let nodeBadge = "";
+  let bootstrapBadge = "";
+  let vsBadge = "";
+  let jqueryBadge = "";
+  let bulmaBadge = "";
+  const technologiesUsed  = data.technology
+  for (let i = 0; i < technologiesUsed.length; i++) {
+    if(technologiesUsed[i] === 'HTML') {
+      htmlBadge = `![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)`;
+    } 
+    else if(technologiesUsed[i] === 'CSS') {
+      cssBadge = `![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)`;
+    } 
+    else if(technologiesUsed[i] === 'JavaScript') {
+      jsBadge = `![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)`;
+    }
+    else if(technologiesUsed[i] === 'NodeJs') {
+      nodeBadge = `![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)`;
+    }
+    else if(technologiesUsed[i] === 'Bootstrap') {
+      bootstrapBadge = `![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)`;
+    }
+    else if(technologiesUsed[i] === 'VS Code') {
+      vsBadge = `![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)`;
+    }
+    else if(technologiesUsed[i] === 'jQuery') {
+      jqueryBadge = `![jQuery](https://img.shields.io/badge/jquery-%230769AD.svg?style=for-the-badge&logo=jquery&logoColor=white)`;
+    }
+    else if(technologiesUsed[i] === 'Bulma') {
+      bulmaBadge = `![Bulma](https://img.shields.io/badge/bulma-00D0B1?style=for-the-badge&logo=bulma&logoColor=white)`;
+    }
+  };
+  let allTechnologies = htmlBadge + cssBadge + jsBadge + nodeBadge + bootstrapBadge + vsBadge + jqueryBadge + bulmaBadge
+  return allTechnologies;
+};
+
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
   return `# ${data.title}
+  ${renderLicenseBadge(data)}
   
   ## Description
-  ${renderLicenseBadge(data)}
   ${data.description}
 
-  ## Table of Contentsga
+  ## Table of Content
   * [Installation](#installation)
   * [Usage](#usage)
   * [Credits](#credits)
   * [License](#license)
+  
+  ## Made With
+  ${technologiesUsed(data)}
   
   ## Installation
   ${data.install}
@@ -150,19 +193,14 @@ function generateMarkdown(data) {
   ## Usage
   ${data.usage}
   To view this application,the following image shows the landing page of the application, or click on https://${data.username}.github.io/${data.title}
-
-  ${data.screenshot}
-
-
+  ![${data.title}](${data.screenshot})
 
   ## License
-  
   ${renderLicenseBadge(data)}
-  
+
   Link to license: ${renderLicenseLink(data)} 
 
   Copyright (C) ${new Date().getFullYear()} ${data.name}
-
   ${renderLicenseSection(data)}
   
   ## Contribution
@@ -174,17 +212,15 @@ function generateMarkdown(data) {
   ## Questions
   ${data.questions}
   
-  ### Contact
-  Feel Free to contact me with any further questions.
-  * [![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:${data.email}) -  : ${data.email}
-  * [![Github](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/${data.github}) -  ${data.username}
+
+  ## Contact
+  * For any question about this project, please email me at: ${data.email}
+  * To see more of my projects, follow me on Github at: http://github.com/${data.username}
   
+  [![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:${data.email})
+  [![Github](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/${data.username}) 
 
-  ### ©️${new Date().getFullYear()} ${data.name}
   `
-
 };
-
-
 
 module.exports = generateMarkdown;
