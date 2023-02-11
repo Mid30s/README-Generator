@@ -181,8 +181,10 @@ function generateMarkdown(data) {
   ## Table of Content
   * [Installation](#installation)
   * [Usage](#usage)
-  * [Credits](#credits)
   * [License](#license)
+  * [Contribution](#Contribution)
+  * [Tests](#tests)
+  * [Contact](#contact)
   
   ## Made With
   ${technologiesUsed(data)}
