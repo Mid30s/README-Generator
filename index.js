@@ -92,13 +92,34 @@ const questions = [
             return true;
           }
     },
-
     {
         type: "list",
         name: "license",
         message: "Select a license.",
-        choices: ["MIT", "APACHE 2.0", "GPL 3.0", "BSD 3-Clause", "NONE"]
-    },
+        choices: [
+            {
+                name: "MIT",
+                value: 0
+            },
+            {
+                name: "APACHE 2.0",
+                value: 1
+            },
+            {
+                name: "GPL 3.0",
+                value: 2
+            },
+
+            {
+                name: "BSD 3-Clause",
+                value: 3
+            },
+            {
+                name: "None",
+                value: 4
+            },
+        ],
+    },   
 
     {
         type: "input",
