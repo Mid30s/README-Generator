@@ -26,7 +26,7 @@ In conclusion, this project provides valuable experience in creating a command-l
   ```
 
   ## Usage
- To view this application,the following image shows the landing page of the application, or click on https://drive.google.com/file/d/1L33-r6a5yTyH0wq2Pwixjmd5ZAkNTDTB/view
+ To view this application,the following image shows the landing page of the application, or click on the walkthrough video that demonstrates the functionality of this project: https://drive.google.com/file/d/1L33-r6a5yTyH0wq2Pwixjmd5ZAkNTDTB/view
   ![README-Generator](./assets/images/landing.png)
   ![README-Generator](./assets/images/readme-template.png)
   ![README-Generator](./assets/images/display-readme.png)
