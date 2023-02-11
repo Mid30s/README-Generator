@@ -1,91 +1,83 @@
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
-function renderLicenseBadge(license) {
-  let license = "";
+const licenseBadge = renderLicenseBadge(data.license);
+function renderLicenseBadge(licence) {
 
-    if (!license) {
+  switch (license) {
+    case "MIT":
+      return "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)]";
+      break;
+
+    case "APACHE 2.0":
+      return "[![License:APACHE 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)]";
+      break;
+
+    case "GPL":
+      return "[![License: GPL 2.0](https://img.shields.io/badge/License-GPLv3-blue.svg)]";
+      break;
+
+    case "BSD 3-Clause":
+      return "[![License: BSD 3-Clause](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)]";
+      break;
+
+    default:
       return "";
-    } 
-    else{
+  }
+}
 
-        switch(license){
-          case "MIT":
-            license = "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)]";
-            break;
-
-            case "APACHE 2.0":
-                license = "[![License:APACHE 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)]";
-                break;
-
-            case "GPL":
-                license = "[![License: GPL 2.0](https://img.shields.io/badge/License-GPLv3-blue.svg)]";
-                break;
-
-            case "BSD 3-Clause":
-                license = "[![License: BSD 3-Clause](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)]";
-                break;  
-                
-            default:
-              console.log('Check your license!');    
-        }
-    }
-    return license;
-};
 
 
 
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
-function renderLicenseLink(license) {
-  let license = "";
+function renderLicenseLink(data) {
+  let licenseLink = " "
 
-  if (!license) {
+  if (!(data.license)) {
     return '';
   } 
   else{
 
-      switch(license){
+      switch(data.license){
         case "MIT":
-          license = "https://opensource.org/licenses/MIT";
+          licenseLink = "https://opensource.org/licenses/MIT";
           break;
 
           case "APACHE 2.0":
-              license = "https://opensource.org/licenses/Apache-2.0";
+            licenseLink = "https://opensource.org/licenses/Apache-2.0";
               break;
 
           case "GPL":
-              license = "https://www.gnu.org/licenses/gpl-3.0";
+            licenseLink = "https://www.gnu.org/licenses/gpl-3.0";
               break;
 
           case "BSD 3-Clause":
-              license = "https://opensource.org/licenses/BSD-3-Clause";
+            licenseLink= "https://opensource.org/licenses/BSD-3-Clause";
               break;  
               
           default:
             console.log('Check your license!');    
       }
   }
-  return license;
+  return licenseLink;
 };
-
 
 
 
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
-function renderLicenseSection(license) {
-  let license = "";
+function renderLicenseSection(data) {
+  let licenseText = ""
 
-  if (!license) {
+  if (!(data.license)) {
     return '';
   } 
   else {
 
-    switch (license) {
+    switch (data.license) {
       case "MIT":
-        license =
-         `Copyright (c) [${new Date().getFullYear()}] [${data.name}]
-
+        licenseText =
+         `
           Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
           
           The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
@@ -94,27 +86,27 @@ function renderLicenseSection(license) {
         break;
 
       case "APACHE 2.0":
-        license =
-        `Copyright (c) [${new Date().getFullYear()}] [${data.name}]
+        licenseText =
+        `
+        Licensed under the Apache License, Version 2.0 (the "License");
+        you may not use this file except in compliance with the License.
+        You may obtain a copy of the License at
+           
+          http://www.apache.org/licenses/LICENSE-2.0
+           
+        Unless required by applicable law or agreed to in writing, software
+        distributed under the License is distributed on an "AS IS" BASIS,
+        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        See the License for the specific language governing permissions and
+        imitations under the License.`;
 
-            Licensed under the Apache License, Version 2.0 (the "License");
-            you may not use this file except in compliance with the License.
-            You may obtain a copy of the License at
-           
-             http://www.apache.org/licenses/LICENSE-2.0
-           
-            Unless required by applicable law or agreed to in writing, software
-            distributed under the License is distributed on an "AS IS" BASIS,
-            WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-            See the License for the specific language governing permissions and
-            limitations under the License.`;
+            
            
         break;
 
       case "GPL":
-        license = 
-        `Copyright (C) [${new Date().getFullYear()}] [${data.name}]
-
+        licenseText = 
+        `
         This program is free software: you can redistribute it and/or modify
         it under the terms of the GNU General Public License as published by
         the Free Software Foundation, either version 3 of the License, or
@@ -133,9 +125,8 @@ function renderLicenseSection(license) {
         break;
 
       case "BSD 3-Clause":
-        license = 
-        `Copyright [${new Date().getFullYear()}] [${data.name}]
-
+        licenseText = 
+        `
         Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
         
         1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
@@ -151,7 +142,7 @@ function renderLicenseSection(license) {
         console.log('Check your license!');
     }
   }
-  return license;
+  return licenseText;
 
 
 
@@ -160,8 +151,60 @@ function renderLicenseSection(license) {
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
   return `# ${data.title}
+  
+  ## Description
+  ${renderLicenseBadge(data.license)}
+  ${data.description}
 
-`;
-}
+  ## Table of Contents
+  * [Installation](#installation)
+  * [Usage](#usage)
+  * [Credits](#credits)
+  * [License](#license)
+  
+  ## Installation
+  ${data.install}
+
+  ## Usage
+  ${data.usage}
+  To view this application,the following image shows the landing page of the application, or click on https://${data.username}.github.io/${data.title}
+
+  ${data.screenshot}
+
+
+
+  ## License
+  
+  ${renderLicenseBadge(data.license)}
+  
+  Link to license: ${renderLicenseLink(data.license)} 
+
+  Copyright (C) [${new Date().getFullYear()}] [${data.name}]
+
+  ${renderLicenseSection(data.license)}
+  
+  ## Contribution
+  ${data.contribution}
+  
+  ## Tests
+  ${data.test}
+
+  ## Questions
+  ${data.questions}
+  
+  ### Contact
+  Feel Free to contact me with any further questions.
+  * [Email](mailto:${data.email}) - ![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white) : ${data.email}
+  * [GitHub](https://github.com/${data.github}) - ![Github](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white): ${data.github}
+
+  ### ©️[${new Date().getFullYear()}] ${data.name}
+  `
+  
+};
+
+
+
+
+
 
 module.exports = generateMarkdown;

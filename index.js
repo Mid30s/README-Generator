@@ -22,7 +22,7 @@ const questions = [
 
     {
         type: "input",
-        name: "github-username",
+        name: "username",
         message: "What is your Github username? (Required)",
         validate: function(input) {
             if (input.length > 0) {
@@ -46,7 +46,7 @@ const questions = [
     },
     {
         type: "input",
-        name: "project-name",
+        name: "title",
         message: "What is your project's name? (Required)",
         validate: function(input) {
             if (input.length > 0) {
@@ -105,9 +105,17 @@ const questions = [
         name: "usage",
         message: "What do the user need to know about using the repo?"
     },
+
     {
         type: "input",
-        name: "contribute",
+        name: "screenshot",
+        message: "Enter URL for landing page screenshot.",
+    },
+
+
+    {
+        type: "input",
+        name: "contribution",
         message: "What do the user need to know about contributing to the repo?"
     },
 
