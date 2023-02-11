@@ -8,6 +8,20 @@ const generateMarkdown = require("./utils/generateMarkdown.js");
 const questions = [
     {
         type: "input",
+        name: "name",
+        message: "What is your full name? (Required)",
+        validate: function(input) {
+            if (input.length > 0) {
+              return true;
+            } else {
+              return "Please enter your full name";
+            }
+        }    
+    },
+
+
+    {
+        type: "input",
         name: "github-username",
         message: "What is your Github username? (Required)",
         validate: function(input) {
@@ -70,14 +84,20 @@ const questions = [
         type: "checkbox",
         name: "technology",
         message: "What technologies used in this project?",
-        choices: ["HTML", "CSS", "JavaScript", "NodeJs","Bootstrap","VS Code", "jQuery","Bulma" ]
+        choices: ["HTML", "CSS", "JavaScript", "NodeJs","Bootstrap","VS Code", "jQuery","Bulma" ],
+        validate: function(answer) {
+            if (answer.length < 1) {
+              return "You must choose at least one.";
+            }
+            return true;
+          }
     },
 
     {
         type: "list",
         name: "license",
         message: "Select a license.",
-        choices: ["MIT", "APACHE 2.0", "GPL 3.0", "BSD 3", "NONE"]
+        choices: ["MIT", "APACHE 2.0", "GPL 3.0", "BSD 3-Clause", "NONE"]
     },
 
     {
@@ -111,11 +131,12 @@ fs.writeFile(fileName, data, err => {
 
 // TODO: Create a function to initialize app
 function init() {
-    inquirer.prompt(questions).then(answers => {      
-        const markdown = generateMarkdown(answers);
+    inquirer.prompt(questions).then(data=> {      
+        const markdown = generateMarkdown(data);
         writeToFile("Display-README.md", markdown);
     });
 }
 
 // Function call to initialize app
 init();
+
