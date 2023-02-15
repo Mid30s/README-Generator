@@ -165,7 +165,7 @@ function technologiesUsed(data) {
       bulmaBadge = `![Bulma](https://img.shields.io/badge/bulma-00D0B1?style=for-the-badge&logo=bulma&logoColor=white)`;
     }
   };
-  let allTechnologies = htmlBadge + cssBadge + jsBadge + nodeBadge + bootstrapBadge + vsBadge + jqueryBadge + bulmaBadge
+  const allTechnologies = htmlBadge + cssBadge + jsBadge + nodeBadge + bootstrapBadge + vsBadge + jqueryBadge + bulmaBadge
   return allTechnologies;
 };
 
@@ -190,10 +190,12 @@ function generateMarkdown(data) {
   ${technologiesUsed(data)}
   
   ## Installation
+  \`\`\`
   ${data.install}
+  \`\`\`
 
   ## Usage
-  ${data.usage}
+  ${data.usage}  \ 
   To view this application,the following image shows the landing page of the application, or click on https://${data.username}.github.io/${data.title}
   ![${data.title}](${data.screenshot})
 
@@ -202,14 +204,18 @@ function generateMarkdown(data) {
 
   Link to license: ${renderLicenseLink(data)} 
 
+  \`\`\`
   Copyright (C) ${new Date().getFullYear()} ${data.name}
   ${renderLicenseSection(data)}
+  \`\`\`
   
   ## Contribution
   ${data.contribution}
   
   ## Tests
+  \`\`\`
   ${data.test}
+  \`\`\`
 
   ## Questions
   ${data.questions}
